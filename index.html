@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clock Practice</title>
+    <link rel="stylesheet" href="static/css/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>What time is it?</h1>
+        <div id="clock-container">
+            <svg id="clock" width="300" height="300" viewBox="0 0 300 300">
+                <!-- Clock face -->
+                <circle cx="150" cy="150" r="140" stroke="black" stroke-width="5" fill="white" />
+                <!-- Center point -->
+                <circle cx="150" cy="150" r="5" fill="black" />
+                <!-- Numbers and ticks will be added by JS -->
+                <g id="ticks"></g>
+                <g id="numbers"></g>
+                <!-- Hands -->
+                <line id="hour-hand" x1="150" y1="150" x2="150" y2="100" stroke="black" stroke-width="8" stroke-linecap="round" />
+                <line id="minute-hand" x1="150" y1="150" x2="150" y2="70" stroke="black" stroke-width="5" stroke-linecap="round" />
+            </svg>
+        </div>
+        <div id="rabbit-container" class="hidden">
+            <img id="rabbit-happy" src="static/images/correct.jpeg" alt="Happy Bunny" class="hidden">
+            <img id="rabbit-sad" src="https://pbs.twimg.com/media/B1NQKZTCAAArrvo.jpg" alt="Sad Bunny" class="hidden">
+        </div>
+        <div id="options-container">
+            <!-- Buttons will be added by JS -->
+        </div>
+        <div id="feedback" class="hidden"></div>
+        <button id="next-btn" class="hidden">Next Question</button>
+    </div>
+    <script src="static/js/game.js"></script>
+</body>
+</html>

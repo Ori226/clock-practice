@@ -11,8 +11,8 @@ const rabbitContainer = document.getElementById('rabbit-container');
 const rabbitHappy = document.getElementById('rabbit-happy');
 const rabbitSad = document.getElementById('rabbit-sad');
 
-const wrongSound = new Audio('/static/audio/wrong.mp3?v=' + Date.now());
-const yuhuSound = new Audio('/static/audio/yuhu.mp3?v=' + Date.now());
+const wrongSound = new Audio('static/audio/wrong.mp3?v=' + Date.now());
+const yuhuSound = new Audio('static/audio/yuhu.mp3?v=' + Date.now());
 
 let currentHour = 0;
 let currentMinute = 0;
@@ -26,7 +26,11 @@ function updateScore(points) {
     score += points;
     if (score < 0) score = 0;
     scoreValue.textContent = score;
-    localStorage.setItem('clockGameScore', score);
+    try {
+        localStorage.setItem('clockGameScore', score);
+    } catch (e) {
+        console.warn("localStorage not available:", e);
+    }
     
     // Simple animation effect
     scoreValue.classList.remove('pop');
@@ -184,10 +188,3 @@ nextBtn.onclick = generateQuestion;
 // Initial setup
 initClock();
 generateQuestion();
-
-estion;
-
-// Initial setup
-initClock();
-generateQuestion();
-

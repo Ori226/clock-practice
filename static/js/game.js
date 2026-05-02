@@ -6,13 +6,33 @@ const numbersGroup = document.getElementById('numbers');
 const optionsContainer = document.getElementById('options-container');
 const feedback = document.getElementById('feedback');
 const nextBtn = document.getElementById('next-btn');
+const scoreValue = document.getElementById('score-value');
 const rabbitContainer = document.getElementById('rabbit-container');
 const rabbitHappy = document.getElementById('rabbit-happy');
 const rabbitSad = document.getElementById('rabbit-sad');
 
+const wrongSound = new Audio('/static/audio/wrong.mp3?v=' + Date.now());
+const yuhuSound = new Audio('/static/audio/yuhu.mp3?v=' + Date.now());
+
 let currentHour = 0;
 let currentMinute = 0;
 let correctAnswer = "";
+let score = parseInt(localStorage.getItem('clockGameScore')) || 0;
+
+// Initialize score display
+scoreValue.textContent = score;
+
+function updateScore(points) {
+    score += points;
+    if (score < 0) score = 0;
+    scoreValue.textContent = score;
+    localStorage.setItem('clockGameScore', score);
+    
+    // Simple animation effect
+    scoreValue.classList.remove('pop');
+    void scoreValue.offsetWidth; // Trigger reflow
+    scoreValue.classList.add('pop');
+}
 
 function initClock() {
     // Add ticks
@@ -129,8 +149,8 @@ function handleAnswer(selected, btn) {
     rabbitSad.classList.add('hidden');
 
     if (selected === correctAnswer) {
-        speak("Yuhu!!");
-        setTimeout(() => speak(selected), 800);
+        yuhuSound.play().catch(e => console.error("Error playing sound:", e));
+        updateScore(1);
         
         btn.classList.add('correct');
         feedback.textContent = "Well done! 🌟";
@@ -146,7 +166,8 @@ function handleAnswer(selected, btn) {
         // Disable all buttons
         document.querySelectorAll('.option-btn').forEach(b => b.disabled = true);
     } else {
-        speak(selected);
+        wrongSound.play().catch(e => console.error("Error playing sound:", e));
+        // No score penalty for errors as per user request
         btn.classList.add('wrong');
         feedback.textContent = "Try again! 😊";
         feedback.style.color = "#f44336";
@@ -163,3 +184,10 @@ nextBtn.onclick = generateQuestion;
 // Initial setup
 initClock();
 generateQuestion();
+
+estion;
+
+// Initial setup
+initClock();
+generateQuestion();
+

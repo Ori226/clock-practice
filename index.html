@@ -4,11 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Clock Practice</title>
-    <link rel="stylesheet" href="static/css/style.css">
+    <link rel="stylesheet" href="static/css/style.css?v=3">
 </head>
 <body>
     <div class="container">
+        <div id="score-container">
+            <span id="hamster-icon">🐹</span>
+            <span id="score-value">0</span>
+        </div>
+        
+        <button id="next-btn" class="hidden">Next Question</button>
+        
         <h1>What time is it?</h1>
+        
         <div id="clock-container">
             <svg id="clock" width="300" height="300" viewBox="0 0 300 300">
                 <!-- Clock face -->
@@ -23,16 +31,18 @@
                 <line id="minute-hand" x1="150" y1="150" x2="150" y2="70" stroke="black" stroke-width="5" stroke-linecap="round" />
             </svg>
         </div>
+        
         <div id="rabbit-container" class="hidden">
-            <img id="rabbit-happy" src="static/images/correct.jpeg" alt="Happy Bunny" class="hidden">
-            <img id="rabbit-sad" src="static/images/wrong.jpeg" alt="Sad Bunny" class="hidden">
+            <img id="rabbit-happy" src="/static/images/correct.jpeg" alt="Happy Bunny" class="hidden">
+            <img id="rabbit-sad" src="/static/images/wrong.jpeg" alt="Sad Bunny" class="hidden">
         </div>
+        
         <div id="options-container">
             <!-- Buttons will be added by JS -->
         </div>
+        
         <div id="feedback" class="hidden"></div>
-        <button id="next-btn" class="hidden">Next Question</button>
     </div>
-    <script src="static/js/game.js"></script>
+    <script src="/static/js/game.js?v=3"></script>
 </body>
 </html>
